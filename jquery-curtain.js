@@ -1,5 +1,5 @@
 /*
- * jQuery Curtain v0.2 - jQuery JavaScript Plugin
+ * jQuery Curtain v0.3 - jQuery JavaScript Plugin
  * Code: http://github.com/paulelliott/jquery-curtain/tree/master
  *
  * Copyright (c) 2009 Paul Elliott with RedLine IT
@@ -10,8 +10,16 @@
     curtain: function(options) {
       if (options === 'remove') {
         return this.each(function() {
-          $(".jquery-curtain", this).remove();
+          var element = $(this);
+          element.curtain('get').remove();
+          element.removeData('jquery-curtain-id');
         });
+      } else if (options === 'get') {
+        var curtains = [];
+        $(this).each(function() {
+          curtains = $.merge(curtains, $.makeArray($("#" + $(this).data('jquery-curtain-id'))));
+        });
+        return $(curtains);
       } else {
         var settings = $.extend({
           loader_image: '/images/ajax-loader.gif',
@@ -22,7 +30,9 @@
         return this.each(function() {
           var element = $(this);
           var offset = element.offset();
-          var curtain = $("<div class='jquery-curtain'></div>").css({
+          var id = "jquery-curtain-" + curtainCount++;
+          element.data('jquery-curtain-id',id);
+          var curtain = $("<div id='" + id + "' class='jquery-curtain'></div>").css({
             position: 'absolute',
             'z-index': 99999,
             'background-color': 'black',
@@ -46,7 +56,7 @@
             }));
           }
 
-          $(this).prepend(curtain);
+          $("body").append(curtain);
         });
       }
     }
