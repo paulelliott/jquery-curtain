@@ -12,7 +12,7 @@ element.  This means that the curtain can be applied to any element type, regard
 
 Usage:
 
-To apply the curtain:  $(".elements_to_curtain").curtain(<i>options</i>);
+To apply the curtain:  $(".elements_to_curtain").curtain(options);
 
 To remove the curtain: $(".elements_to_curtain").curtain("remove");
 
