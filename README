@@ -1,0 +1,30 @@
+The jQuery Curtain plugin allows you to place a darkened curtain over any DOM element, optionally with a graphic centered on the curtain.
+This can be used to disabled a portion of the page for any reason, such as to indicate an ajax call in progress.
+
+Source on Github:
+http://github.com/paulelliott/jquery-curtain/tree/master
+
+Demo:
+http://blog.codingfrontier.com/?page_id=157
+
+It works by appending a div to the end of the body tag.  The div's absolute position and size are calculated on the fly to match the parent
+element.  This means that the curtain can be applied to any element type, regardless of its position.
+
+Usage:
+
+To apply the curtain:  $(".elements_to_curtain").curtain(<i>options</i>);
+
+To remove the curtain: $(".elements_to_curtain").curtain("remove");
+
+To get the curtain:    $(".elements_to_curtain").curtain("get");
+
+Options (all are optional):
+
+  loader_image - The location of the image you would like to overlay on the curtain.  If an empty string is used, no image will appear.
+    default: '/images/ajax-loader.gif'
+
+  loader_height - the height in pixels of the loader image.
+    default: 100
+
+  loader_width - the width in pixels of the loader image
+    default: 100
