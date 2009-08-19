@@ -1,11 +1,23 @@
 /*
- * jQuery Curtain v0.3 - jQuery JavaScript Plugin
+ * jQuery Curtain v0.4 - jQuery JavaScript Plugin
  * Code: http://github.com/paulelliott/jquery-curtain/tree/master
  *
  * Copyright (c) 2009 Paul Elliott with RedLine IT
  * Dual licensed under the MIT and GPL licenses.
  */
 (function($) {
+  var defaultSettings = {
+    loader_image: '/images/ajax-loader.gif',
+    loader_height: 100,
+    loader_width: 100
+  };
+  
+  $.extend({
+    curtainSettings: function(newDefaults) {
+      defaultSettings = $.extend(defaultSettings, newDefaults);
+    }
+  });
+  
   $.fn.extend({
     curtain: function(options) {
       if (options === 'remove') {
@@ -21,11 +33,7 @@
         });
         return $(curtains);
       } else {
-        var settings = $.extend({
-          loader_image: '/images/ajax-loader.gif',
-          loader_height: 100,
-          loader_width: 100
-        }, options);
+        var settings = $.extend(defaultSettings, options);
 
         return this.each(function() {
           var element = $(this);

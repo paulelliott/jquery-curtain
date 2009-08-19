@@ -1,7 +1,7 @@
 Screw.Unit(function() {
   describe("jquery-curtain", function() {
     //Clean up the curtain after each run.
-    after(function() { $("#container").curtain("remove"); });
+    after(function() { $(".test_container").curtain("remove"); });
 
     describe('when curtain is applied with the default options', function() {
       before(function() { $("#container").curtain(); });
@@ -38,6 +38,17 @@ Screw.Unit(function() {
     describe("when requesting the curtain for an element that doesn't exist", function() {
       it("should return an empty jQuery object", function() {
         expect($("#princess_leia").curtain('get').length).to(equal, 0);
+      });
+    });
+    
+    describe("when invoking the curtain with default settings overriden", function() {
+      before(function() {
+        $.curtainSettings({loader_image: 'some_other_image.png'});
+        $("#container").curtain();
+      });
+      
+      it("should have the new default settings with the normal function call", function() {
+        expect($("#container").curtain("get").find("img").attr('src')).to(equal, 'some_other_image.png');
       });
     });
   });

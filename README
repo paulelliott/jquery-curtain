@@ -16,6 +16,8 @@ To remove the curtain: $(".elements_to_curtain").curtain("remove");
 
 To get the curtain:    $(".elements_to_curtain").curtain("get");
 
+To change the default options: $.curtainSettings(options);
+
 Options (all are optional):
 
   loader_image - The location of the image you would like to overlay on the curtain.  If an empty string is used, no image will appear.
