@@ -13,8 +13,8 @@
   };
   
   $.extend({
-    curtainSettings: function(newDefaults) {
-      defaultSettings = $.extend(defaultSettings, newDefaults);
+    curtainSetup: function(options) {
+      defaultSettings = $.extend(defaultSettings, options);
     }
   });
   

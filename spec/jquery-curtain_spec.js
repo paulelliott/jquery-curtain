@@ -43,7 +43,7 @@ Screw.Unit(function() {
     
     describe("when invoking the curtain with default settings overriden", function() {
       before(function() {
-        $.curtainSettings({loader_image: 'some_other_image.png'});
+        $.curtainSetup({loader_image: 'some_other_image.png'});
         $("#container").curtain();
       });
       

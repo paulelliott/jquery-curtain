@@ -16,7 +16,7 @@ To remove the curtain: $(".elements_to_curtain").curtain("remove");
 
 To get the curtain:    $(".elements_to_curtain").curtain("get");
 
-To change the default options: $.curtainSettings(options);
+To change the default options: $.curtainSetup(options);
 
 Options (all are optional):
 
