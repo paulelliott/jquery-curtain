@@ -1,20 +1,18 @@
 /*
- * jQuery Curtain v0.4 - jQuery JavaScript Plugin
+ * jQuery Curtain v0.5 - jQuery JavaScript Plugin
  * Code: http://github.com/paulelliott/jquery-curtain/tree/master
  *
  * Copyright (c) 2009 Paul Elliott with RedLine IT
  * Dual licensed under the MIT and GPL licenses.
  */
 (function($) {
-  var defaultSettings = {
-    loader_image: '/images/ajax-loader.gif',
-    loader_height: 100,
-    loader_width: 100
+  var defaults = {
+    loader_image: '/images/ajax-loader.gif'
   };
   
   $.extend({
     curtainSetup: function(options) {
-      defaultSettings = $.extend(defaultSettings, options);
+      $.extend(defaults, options);
     }
   });
   
@@ -28,12 +26,15 @@
         });
       } else if (options === 'get') {
         var curtains = [];
-        $(this).each(function() {
+        this.each(function() {
           curtains = $.merge(curtains, $.makeArray($("#" + $(this).data('jquery-curtain-id'))));
         });
         return $(curtains);
       } else {
-        var settings = $.extend(defaultSettings, options);
+        options = options ? options : {};
+        var noImage = options.loader_image === '';
+        $.extend(options, defaults);
+        if (noImage) options.loader_image = '';
 
         return this.each(function() {
           var element = $(this);
@@ -55,13 +56,16 @@
           });
 
           //If a loader graphic was specified, add it.
-          if (settings.loader_image) {
-            var image = $("<img src='" + settings.loader_image + "' alt='Loading...' />");
-            curtain.append(image.css({
-              position: 'relative',
-              top: ((element.height() / 2) - (settings.loader_height / 2)) + "px",
-              left: ((element.width() / 2) - (settings.loader_width / 2)) + "px"
-            }));
+          if (options.loader_image) {
+            var image = $("<img src='" + options.loader_image + "' alt='Loading...' />");
+            image.load(function() {
+              image.css({
+                position: 'relative',
+                top: ((curtain.height() / 2) - (image.height() / 2)) + "px",
+                left: ((curtain.width() / 2) - (image.width() / 2)) + "px"
+              });
+            });
+            curtain.append(image);
           }
 
           $("body").append(curtain);

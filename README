@@ -22,9 +22,3 @@ Options (all are optional):
 
   loader_image - The location of the image you would like to overlay on the curtain.  If an empty string is used, no image will appear.
     default: '/images/ajax-loader.gif'
-
-  loader_height - the height in pixels of the loader image.
-    default: 100
-
-  loader_width - the width in pixels of the loader image
-    default: 100

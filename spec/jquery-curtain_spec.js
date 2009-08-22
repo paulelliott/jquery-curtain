@@ -50,6 +50,10 @@ Screw.Unit(function() {
       it("should have the new default settings with the normal function call", function() {
         expect($("#container").curtain("get").find("img").attr('src')).to(equal, 'some_other_image.png');
       });
+      
+      after(function() {
+        $.curtainSetup({loader_image: '/images/ajax-loader.gif'});
+      });
     });
   });
 });
