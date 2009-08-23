@@ -1,5 +1,5 @@
 /*
- * jQuery Curtain v0.5 - jQuery JavaScript Plugin
+ * jQuery Curtain v0.5.1 - jQuery JavaScript Plugin
  * Code: http://github.com/paulelliott/jquery-curtain/tree/master
  *
  * Copyright (c) 2009 Paul Elliott with RedLine IT
@@ -57,13 +57,13 @@
 
           //If a loader graphic was specified, add it.
           if (options.loader_image) {
-            var image = $("<img src='" + options.loader_image + "' alt='Loading...' />");
+            var image = $("<img src='" + options.loader_image + "' alt='Loading...' style='display:none;' />");
             image.load(function() {
               image.css({
                 position: 'relative',
                 top: ((curtain.height() / 2) - (image.height() / 2)) + "px",
                 left: ((curtain.width() / 2) - (image.width() / 2)) + "px"
-              });
+              }).show();
             });
             curtain.append(image);
           }
