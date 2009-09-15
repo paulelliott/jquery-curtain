@@ -1,5 +1,5 @@
 /*
- * jQuery Curtain v0.5.1 - jQuery JavaScript Plugin
+ * jQuery Curtain v0.5.2 - jQuery JavaScript Plugin
  * Code: http://github.com/paulelliott/jquery-curtain/tree/master
  *
  * Copyright (c) 2009 Paul Elliott with RedLine IT
@@ -19,21 +19,18 @@
   $.fn.extend({
     curtain: function(options) {
       if (options === 'remove') {
-        return this.each(function() {
-          var element = $(this);
-          element.curtain('get').remove();
-          element.removeData('jquery-curtain-id');
-        });
+        this.curtain('get').remove();
+        return this.removeData('jquery-curtain-id');
       } else if (options === 'get') {
         var curtains = [];
         this.each(function() {
-          curtains = $.merge(curtains, $.makeArray($("#" + $(this).data('jquery-curtain-id'))));
+          curtains = $.merge(curtains, $("#" + $(this).data('jquery-curtain-id')));
         });
         return $(curtains);
       } else {
         options = options ? options : {};
         var noImage = options.loader_image === '';
-        $.extend(options, defaults);
+        options = $.extend({}, defaults, options);
         if (noImage) options.loader_image = '';
 
         return this.each(function() {

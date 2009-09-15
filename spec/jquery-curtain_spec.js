@@ -55,5 +55,15 @@ Screw.Unit(function() {
         $.curtainSetup({loader_image: '/images/ajax-loader.gif'});
       });
     });
+    
+    describe("when invoking the curtain with passed in settings", function() {
+      before(function() {
+        $("#container").curtain({paul:'test',loader_image: 'foo.gif'});
+      });
+      
+      it("should have the correct image", function() {
+        expect($("#container").curtain("get").find("img").attr('src')).to(equal, 'foo.gif');
+      });
+    });
   });
 });
